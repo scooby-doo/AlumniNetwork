@@ -7,7 +7,7 @@
         .panel-body
           %h4= @startup.description
         .panel-footer
-          .label.label-default= link_to @startup.user_user_name, user_path(@startup.user)
+          .label.label-default= link_to @startup.user.user_name, user_path(@startup.user)
           -if current_user == @startup.user
             .btn.btn-danger.btn-xs.pull-right
               .glyphicon.glyphicon-trash= link_to 'Delete', startup_path(@startup), method: :delete
