@@ -1,0 +1,10 @@
+.container
+  = simple_form_for @startup do |f|
+    = f.input :name
+    = f.input :description
+    = f.input :field_list
+    = f.button :submit
+
+  %p
+    %br
+    %h4= link_to 'Back', startups_path

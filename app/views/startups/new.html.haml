@@ -1,0 +1,11 @@
+.container
+  .col-lg-4
+    %h1 New Startup
+    = simple_form_for @startup do |f|
+      = f.input :name, :placeholder => "Name..."
+      = f.input :description, :placeholder => "Description..."
+      = f.input :all_fields, :placeholder => "field ..."
+      = f.button :submit
+    %p
+      %br
+      %h4= link_to 'Back', startups_path

@@ -1,0 +1,19 @@
+.navbar.navbar-default
+  .container
+    .navbar-header
+      .navbar-brand= link_to 'Alumni Network', root_path
+    .navbar-collapse
+      %ul
+        .nav.navbar-nav
+          %li
+            = link_to 'New startup', new_startup_path
+          %li
+            = link_to 'All Startups', startups_path
+        .nav.navbar-nav.navbar-right
+          %li         
+            - if user_signed_in?
+              = link_to 'Logout', destroy_user_session_path, method: :delete
+              = link_to 'My Account', user_path(current_user)
+            - else
+              = link_to "Sign In", user_session_path
+              = link_to 'Sign Up', new_user_registration_path

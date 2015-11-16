@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-xs-12.col-md-8.col-md-offset-2
+      .panel.panel-default
+        .panel-heading
+          %h4= @startup.name
+        .panel-body
+          %h4= @startup.description
+        .panel-footer
+          .label.label-default= link_to @startup.user_user_name, user_path(@startup.user)
+          -if current_user == @startup.user
+            .btn.btn-danger.btn-xs.pull-right
+              .glyphicon.glyphicon-trash= link_to 'Delete', startup_path(@startup), method: :delete
+            .btn.btn-default.btn-xs.pull-right
+              .glyphicon.glyphicon-pencil= link_to 'Edit', edit_startup_path(@startup)
+
+      People who liked this:
+      - @startup.upvotes.each do |up|
+        =up.user.user_name
+
+      - @startup.comments.each do |c|
+        .panel.panel-default
+          .panel-body
+            =c.text
+            %br
+            = link_to c.user.user_name, user_path(c.user)
+
+      = simple_form_for [@startup, Comment.new] do |f|
+        =f.input :text, label: false, required: false
+        =f.button :submit, 'Comment'
+
+
+
+
+%p
+  %br
+  %h4= link_to 'Back', startups_path

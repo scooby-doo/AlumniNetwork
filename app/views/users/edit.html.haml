@@ -1,0 +1,37 @@
+.container
+  = simple_form_for @user do |f|
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :user_name
+    = f.input :field_list
+    %h4 Phone
+    = f.simple_fields_for :phones do |phone|
+      = render 'phone_fields', f: phone
+    .links
+      = link_to_add_association 'add phone', f, :phones
+
+    %h4 Work Experience
+    = f.simple_fields_for :work_experiences do |work|
+      = render 'work_experience_fields', f: work
+    .links
+      = link_to_add_association 'add work experience', f, :work_experiences
+
+    %h4 BEST Experience
+    = f.simple_fields_for :best_experiences do |best|
+      = render 'best_experience_fields', f: best
+    .links
+      = link_to_add_association 'add BEST experience', f, :best_experiences
+
+    %h4 Clients
+    = f.simple_fields_for :clients do |client|
+      = render 'client_fields', f: client
+    .links
+      = link_to_add_association 'add client', f, :clients
+
+    %h4 How can I help the community?
+    = f.simple_fields_for :helps do |help|
+      = render 'help_fields', f: help
+    .links
+      = link_to_add_association 'Add more options', f, :helps
+    <br>
+    =f.button :submit

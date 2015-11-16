@@ -1,0 +1,82 @@
+.container
+  %h1
+    =@user.first_name
+    =@user.last_name
+  %h5
+    =@user.user_name
+    <br>
+    =@user.email
+    <br>
+    =@user.field_list
+
+  %h4 Phones
+  .collection
+    -@user.phones.each do |phone|
+      .col-lg-4.col-md-6.col-sm-6.col-xs-12
+        .panel.panel-default
+          .panel-body 
+            =phone.phone_number
+
+  %h4 Work Experience
+  .collection
+    -@user.work_experiences.each do |work|
+      .col-lg-4.col-md-6.col-sm-6.col-xs-12
+        .panel.panel-default
+          .panel-body           
+            =work.job_role
+            <br>
+            =work.summary
+            <br>
+            =work.company
+            <br>
+            =work.start_date
+            <br>
+            =work.end_date
+            <br>
+            =work.is_current
+
+  %h4 BEST Experience
+  .collection
+    -@user.best_experiences.each do |best|
+      .col-lg-4.col-md-6.col-sm-6.col-xs-12
+        .panel.panel-default
+          .panel-body           
+            =best.title
+            <br>
+            =best.summary
+            <br>
+            =best.start_date
+            <br>
+            =best.end_date
+
+  %h4 Clients
+  .collection
+    -@user.clients.each do |client|
+      .col-lg-4.col-md-6.col-sm-6.col-xs-12
+        .panel.panel-default
+          .panel-body           
+            =client.name
+            <br>
+            =client.job_role
+            <br>
+            =client.company
+            <br>
+            =client.email
+            <br>
+            =client.phone
+
+  %h4 How can #{@user.first_name} help the community?
+  .collection
+    -@user.helps.each do |help|
+      .col-lg-4.col-md-6.col-sm-6.col-xs-12
+        .panel.panel-default
+          .panel-body 
+            =help.description
+
+  -if @user == current_user
+    .btn.btn-default.btn-xs.pull-right
+      .glyphicon.glyphicon-pencil= link_to 'Edit', edit_user_path(@user)
+
+  %h4 Startup Ideas
+  .collection
+    =render @user.posted_startups

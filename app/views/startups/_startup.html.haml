@@ -1,0 +1,28 @@
+.col-lg-4.col-md-6.col-sm-6.col-xs-12
+  .panel.panel-default
+    .panel-body
+      = link_to startup.name, startup
+      .pull-right
+        .btn.pull-right
+          .glyphicon.glyphicon-comment=startup.comments.count
+      .pull-right
+        .btn.pull-right
+          -if current_user.already_upvoted?(startup)
+            = link_to "Unlike",undo_upvote_startup_path(startup)
+          -else
+            = link_to "Like",upvote_startup_path(startup)
+          .glyphicon.glyphicon-thumbs-up=startup.upvotes.count
+      %br
+      =startup.description
+      <br>
+      =startup.field_list
+    .panel-footer
+      .label.label-default= link_to startup.user_user_name, user_path(startup.user)
+      -if current_user == startup.user
+        .btn.btn-danger.btn-xs.pull-right
+          .glyphicon.glyphicon-trash= link_to 'Delete', startup_path(startup), method: :delete
+        .btn.btn-default.btn-xs.pull-right
+          .glyphicon.glyphicon-pencil= link_to 'Edit', edit_startup_path(startup)
+      .btn.btn-default.btn-xs.pull-right
+        .glyphicon.glyphicon-eye-open= link_to 'Show', startup
+        

@@ -1,0 +1,11 @@
+.col-lg-4.col-md-6.col-sm-6.col-xs-12
+  .panel.panel-default
+    .panel-body
+      .nested-fields
+        =f.input :name
+        =f.input :job_role
+        =f.input :company
+        =f.input :phone
+        =f.input :email
+
+        = link_to_remove_association "remove client", f
