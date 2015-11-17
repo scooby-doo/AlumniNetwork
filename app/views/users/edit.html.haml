@@ -9,7 +9,8 @@
       = render 'phone_fields', f: phone
     .links
       = link_to_add_association 'add phone', f, :phones
-
+      <br>
+      <br>
     %h4 Work Experience
     = f.simple_fields_for :work_experiences do |work|
       = render 'work_experience_fields', f: work
@@ -21,7 +22,6 @@
       = render 'best_experience_fields', f: best
     .links
       = link_to_add_association 'add BEST experience', f, :best_experiences
-
     %h4 Clients
     = f.simple_fields_for :clients do |client|
       = render 'client_fields', f: client

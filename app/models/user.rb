@@ -3,15 +3,16 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable, :omniauth_providers => [:facebook]
 
-  has_many :startups
+  has_many :startups, dependent: :destroy
   has_many :comments
-  has_many :phones
-  has_many :work_experiences
-  has_many :best_experiences
+  has_many :phones, dependent: :destroy
+  has_many :work_experiences, dependent: :destroy
+  has_many :best_experiences, dependent: :destroy
   has_many :clients
-  has_many :helps
+  has_many :helps, dependent: :destroy
 
   accepts_nested_attributes_for :work_experiences, allow_destroy: true
   accepts_nested_attributes_for :phones, allow_destroy: true
@@ -34,5 +35,13 @@ class User < ActiveRecord::Base
   # Determines if a user already voted for a startup
   def already_upvoted?(startup)
     User.joins(:upvotes).where(:upvotes => { :startup_id => startup.id}).size > 0
+  end
+
+  def self.from_omniauth(auth)  
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.first_name = auth.info.name
+    end
   end
 end

@@ -42,6 +42,9 @@ gem 'acts_as_votable'
 
 gem 'inch', require: false
 gem 'rails_best_practices'
+gem 'synvert'
+gem 'figaro'
+gem 'omniauth-facebook'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

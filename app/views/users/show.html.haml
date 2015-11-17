@@ -8,7 +8,8 @@
     =@user.email
     <br>
     =@user.field_list
-
+  <br>
+  <br>
   %h4 Phones
   .collection
     -@user.phones.each do |phone|
@@ -16,7 +17,10 @@
         .panel.panel-default
           .panel-body 
             =phone.phone_number
-
+  <br>
+  <br>
+  <br>
+  <br>
   %h4 Work Experience
   .collection
     -@user.work_experiences.each do |work|
@@ -34,7 +38,15 @@
             =work.end_date
             <br>
             =work.is_current
-
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   %h4 BEST Experience
   .collection
     -@user.best_experiences.each do |best|
@@ -64,7 +76,14 @@
             =client.email
             <br>
             =client.phone
-
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   %h4 How can #{@user.first_name} help the community?
   .collection
     -@user.helps.each do |help|
@@ -72,11 +91,13 @@
         .panel.panel-default
           .panel-body 
             =help.description
-
+  <br>
+  <br>
   -if @user == current_user
     .btn.btn-default.btn-xs.pull-right
       .glyphicon.glyphicon-pencil= link_to 'Edit', edit_user_path(@user)
-
+  <br>
+  <br>
   %h4 Startup Ideas
   .collection
     =render @user.posted_startups
