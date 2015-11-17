@@ -3,7 +3,7 @@
 Devise.setup do |config|
 
 
-  config.omniauth :facebook,  
+  config.omniauth :facebook,
     Rails.application.secrets.facebook_app_id,
     Rails.application.secrets.facebook_app_secret
   # The secret key used by Devise. Devise uses this key to generate
