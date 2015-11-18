@@ -6,6 +6,11 @@ Devise.setup do |config|
   config.omniauth :facebook,
     Rails.application.secrets.facebook_app_id,
     Rails.application.secrets.facebook_app_secret
+
+  require 'omniauth-linkedin'
+  config.omniauth :linkedin, 
+    Rails.application.secrets.linkedin_client_id,
+    Rails.application.secrets.linkedin_client_secret
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
