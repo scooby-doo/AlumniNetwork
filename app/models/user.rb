@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, :omniauth_providers => [:facebook, :linkedin]
+         :omniauthable,
+         :omniauth_providers => [:facebook, :linkedin, :google_oauth2]
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
@@ -63,6 +64,17 @@ class User < ActiveRecord::Base
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.avatar = process_uri(auth.info.image)
+    end
+  end
+
+  def self.connect_to_google(auth)
+    data = auth.info
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = data["email"]
+      user.password = Devise.friendly_token[0,20]
+      user.first_name = data["first_name"]
+      user.last_name = data["last_name"]
+      user.avatar = process_uri(data["image"])
     end
   end
 end

@@ -11,6 +11,13 @@ Devise.setup do |config|
   config.omniauth :linkedin, 
     Rails.application.secrets.linkedin_client_id,
     Rails.application.secrets.linkedin_client_secret
+
+  OmniAuth.config.full_host = Rails.env.production? ? 'https://domain.com' : 'http://localhost:3000'
+  config.omniauth :google_oauth2,
+    Rails.application.secrets.google_client_id,
+    Rails.application.secrets.google_client_secret,
+    :skip_jwt => true
+    {}
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
