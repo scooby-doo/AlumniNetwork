@@ -9,5 +9,5 @@ class Startup < ActiveRecord::Base
   has_many :upvotes
 
   acts_as_taggable
-    acts_as_taggable_on :fields
+  acts_as_taggable_on :fields
 end
