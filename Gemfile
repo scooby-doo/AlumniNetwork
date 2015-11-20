@@ -49,6 +49,8 @@ gem "paperclip"
 gem 'omniauth-oauth2'
 gem 'omniauth-linkedin'
 gem 'omniauth-google-oauth2'
+gem 'rails-jquery-autocomplete'
+gem 'jquery-ui-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

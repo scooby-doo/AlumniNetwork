@@ -6,6 +6,7 @@
           %h4= @startup.name
         .panel-body
           %h4= @startup.description
+          %h4= @startup.field_list
         .panel-footer
           .label.label-default= link_to @startup.user.user_name, user_path(@startup.user)
           -if current_user == @startup.user

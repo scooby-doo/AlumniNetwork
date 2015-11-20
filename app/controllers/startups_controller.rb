@@ -1,6 +1,7 @@
 #Startup controller
 class StartupsController < ApplicationController
   before_filter :authenticate_user!
+  autocomplete :field, :name, :class_name => 'ActsAsTaggableOn::Tag'
 
   # Creates new startup objects
   def new

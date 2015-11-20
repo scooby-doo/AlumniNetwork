@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
+  #get "startup/autocomplete_startup_field" => "startup#autocomplete_startup_field", :controller => "startup", :action => "autocomplete_startup_field", :via => :get
   resources :startups do
+    get :autocomplete_field_name, :on => :collection
     resources :comments, only: :create
     member do
       get "upvote"

@@ -4,7 +4,7 @@
     = simple_form_for @startup do |f|
       = f.input :name, :placeholder => "Name..."
       = f.input :description, :placeholder => "Description..."
-      = f.input :field_list, :placeholder => "field ..."
+      = f.input :field_list, :url => autocomplete_field_name_startups_path, :as => :autocomplete, :input_html => { :data => { :delimiter => ', '}}
       = f.button :submit
     %p
       %br
