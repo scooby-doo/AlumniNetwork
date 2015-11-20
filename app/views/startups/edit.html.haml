@@ -2,7 +2,7 @@
   = simple_form_for @startup do |f|
     = f.input :name
     = f.input :description
-    = f.input :field_list, :url => autocomplete_field_name_startups_path, :as => :autocomplete, :input_html => { :data => { :delimiter => ', '}}
+    = f.input :field_list, :url => autocomplete_field_name_startups_path, :as => :autocomplete, :input_html => { :value => @startup.field_list.join(","), :data => { :delimiter => ', '}}
     = f.button :submit
 
   %p
