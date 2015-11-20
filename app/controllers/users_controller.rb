@@ -1,5 +1,6 @@
 # User controller
 class UsersController < ApplicationController
+  autocomplete :field, :name, :class_name => 'ActsAsTaggableOn::Tag'
   # Finds a user by id
   def show
     @user = User.find(params[:id])

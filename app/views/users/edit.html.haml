@@ -5,7 +5,7 @@
     = f.input :first_name
     = f.input :last_name
     = f.input :user_name
-    = f.input :field_list
+    = f.input :field_list, :url => autocomplete_field_name_users_path, :as => :autocomplete, :input_html => { :data => { :delimiter => ', '}}
     %h4 Phone
     = f.simple_fields_for :phones do |phone|
       = render 'phone_fields', f: phone
