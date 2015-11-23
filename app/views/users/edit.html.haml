@@ -1,6 +1,6 @@
 .container
   = simple_form_for @user do |f|
-    = image_tag @user.avatar.url(:medium)
+    = image_tag @user.avatar.url(:thumb)
     = f.input :avatar, as: :file
     = f.input :first_name
     = f.input :last_name
