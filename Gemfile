@@ -51,6 +51,10 @@ gem 'omniauth-linkedin'
 gem 'omniauth-google-oauth2'
 gem 'rails-jquery-autocomplete'
 gem 'jquery-ui-rails'
+gem 'pry-rails'
+gem 'rubycritic'
+gem 'railroady'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
